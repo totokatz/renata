@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar'
 import HeroSection from '../components/sections/HeroSection'
 import IntroSection from '../components/sections/IntroSection'
 import AsymmetricSection1 from '../components/sections/AsymmetricSection1'
+import QuoteSection from '../components/sections/QuoteSection'
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <HeroSection />
         <IntroSection />
         <AsymmetricSection1 />
+        <QuoteSection />
       </main>
     </>
   )
