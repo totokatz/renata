@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { collections } from '../data/collections'
@@ -84,13 +85,17 @@ export default function Collections() {
     <>
       <Navbar />
 
-      <main className="pt-40 pb-20 overflow-x-hidden">
+      <motion.main
+        className="pt-40 pb-20 overflow-x-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } }}
+        exit={{ opacity: 0, transition: { duration: 0.2, ease: 'easeIn' } }}
+      >
         {/* ── Page header ─────────────────────────────────── */}
         <header className="px-6 md:px-12 max-w-[1920px] mx-auto mb-32 md:mb-48">
           <div className="max-w-4xl">
             <h1 className="font-headline text-6xl md:text-8xl font-light leading-[1.05] mb-8 tracking-tight">
-              Colec<br />
-              <span className="italic pl-12 md:pl-24">ciones</span>
+              Colecciones
             </h1>
             <p className="font-label text-xs uppercase tracking-[0.3em] text-outline">
               Dos series · Ocho obras
@@ -114,7 +119,7 @@ export default function Collections() {
             )
           })}
         </div>
-      </main>
+      </motion.main>
 
       <Footer />
 
@@ -205,6 +210,16 @@ function CollectionSection({ collection, artworks, flipped }) {
 
 /* ──────────────────────────────────────────────────────────── */
 
+const gridVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.06,
+    },
+  },
+}
+
 function ArtworkGrid({ artworks, flipped }) {
   // 12-col asymmetric editorial layout, mirrored when flipped
   const layout = flipped
@@ -230,10 +245,15 @@ function ArtworkGrid({ artworks, flipped }) {
       ]
 
   const aspects = ['aspect-[4/5]', 'aspect-[3/4]', 'aspect-[16/9]', 'aspect-square']
-  const delays = [0, 140, 280, 420]
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-7">
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-7"
+      variants={gridVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+    >
       {artworks.map((artwork, i) => {
         if (!artwork) return null
         const pos = layout[i]
@@ -243,22 +263,50 @@ function ArtworkGrid({ artworks, flipped }) {
             to={`/artwork/${artwork.id}`}
             className={`collection-artwork block ${pos.col} ${pos.row} ${pos.self}`}
           >
-            <ArtworkCard artwork={artwork} aspect={aspects[i]} delay={delays[i]} />
+            <ArtworkCard artwork={artwork} aspect={aspects[i]} />
           </Link>
         )
       })}
-    </div>
+    </motion.div>
   )
 }
 
 /* ──────────────────────────────────────────────────────────── */
 
-function ArtworkCard({ artwork, aspect, delay }) {
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 60,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 50,
+      damping: 18,
+      mass: 1,
+    },
+  },
+}
+
+const titleVariants = {
+  hidden: { opacity: 0, y: 8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 80,
+      damping: 20,
+      delay: 0.3,
+    },
+  },
+}
+
+function ArtworkCard({ artwork, aspect }) {
   return (
-    <div
-      className="reveal-up"
-      style={{ '--reveal-delay': `${delay}ms` }}
-    >
+    <motion.div variants={cardVariants}>
       {/* Image container */}
       <div className={`parallax-container ${aspect} bg-surface-container-low relative overflow-hidden`}>
         <img
@@ -286,15 +334,15 @@ function ArtworkCard({ artwork, aspect, delay }) {
         </div>
       </div>
 
-      {/* Title below image — visible always */}
-      <div className="mt-5">
+      {/* Title below image */}
+      <motion.div className="mt-5" variants={titleVariants}>
         <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">
           {artwork.title}
         </p>
         {artwork.medium && (
           <p className="font-body text-[11px] text-outline mt-1 italic">{artwork.medium}</p>
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }

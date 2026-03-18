@@ -16,6 +16,11 @@ const itemVariants = {
   })
 }
 
+const backVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.5, ease, delay: 0.35 } }
+}
+
 export default function ArtworkDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -60,8 +65,7 @@ export default function ArtworkDetail() {
             <div className="flex flex-col pt-12 md:pt-24 max-w-xl">
 
               <motion.button
-                custom={0}
-                variants={itemVariants}
+                variants={backVariants}
                 initial="hidden"
                 animate="visible"
                 onClick={() => navigate(-1)}
