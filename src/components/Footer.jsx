@@ -19,17 +19,17 @@ export default function Footer() {
           to="/privacy"
           className="font-body text-[0.75rem] tracking-[0.15em] font-light text-on-surface opacity-60 hover:opacity-100 transition-opacity duration-1000 ease-in-out underline underline-offset-8"
         >
-          Privacy
+          Privacidad
         </Link>
         <Link
           to="/inquire"
           className="font-body text-[0.75rem] tracking-[0.15em] font-light text-on-surface opacity-60 hover:opacity-100 transition-opacity duration-1000 ease-in-out"
         >
-          Contact
+          Contacto
         </Link>
       </div>
       <div className="font-body text-[0.75rem] tracking-[0.15em] font-light text-on-surface opacity-40">
-        © {new Date().getFullYear()} Renata Nanni. All Rights Reserved.
+        © {new Date().getFullYear()} Renata Nanni. Todos los derechos reservados.
       </div>
     </footer>
   )

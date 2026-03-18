@@ -69,3 +69,99 @@ body {
   color: #1c1b1c;
   overflow-x: hidden;
 }
+
+.parallax-container {
+  overflow: clip;
+  position: relative;
+  transform: translateZ(0);
+}
+
+.parallax-img {
+  transform: scale(1.1);
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-item:hover .parallax-img {
+  transform: scale(1.05) translateY(-10px);
+}
+
+/* ── Collections page animations ─────────────────────────── */
+
+/* Clip-path wipe reveal for collection titles */
+.reveal-clip {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.75s cubic-bezier(0.76, 0, 0.24, 1) var(--reveal-delay, 0ms);
+}
+.reveal-clip.revealed {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* Fade + slide-up reveal */
+.reveal-up {
+  transform: translateY(52px);
+  opacity: 0;
+  transition:
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    opacity 0.65s ease var(--reveal-delay, 0ms);
+}
+.reveal-up.revealed {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Ghost number fade-in */
+.reveal-ghost {
+  opacity: 0;
+  transition: opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-ghost.revealed {
+  opacity: 0.038;
+}
+
+/* Artwork hover overlay — silky fade-in gradient */
+.collection-artwork .artwork-overlay {
+  opacity: 0;
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.collection-artwork:hover .artwork-overlay {
+  opacity: 1;
+}
+
+/* Text inside overlay — delayed micro-float */
+.collection-artwork .artwork-info {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.65s ease 0.2s,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+.collection-artwork:hover .artwork-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Artwork image — slow breathable scale */
+.collection-artwork .artwork-img {
+  transform: scale(1.08);
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.collection-artwork:hover .artwork-img {
+  transform: scale(1.02);
+}
+
+/* Custom cursor sizing */
+.custom-cursor {
+  transition:
+    width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.25; transform: scaleY(1); }
+  50%       { opacity: 0.6;  transform: scaleY(1.15); }
+}

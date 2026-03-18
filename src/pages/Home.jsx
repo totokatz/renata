@@ -90,9 +90,9 @@ export default function Home() {
 
       <main className="pb-20">
         {/* Header Section */}
-        <header className="px-6 md:px-12 max-w-[1920px] mx-auto mb-32 pt-32">
+        <header className="px-6 md:px-12 max-w-[1920px] mx-auto mb-16 pt-16">
           <div className="max-w-4xl">
-            <h1 className="font-headline text-6xl md:text-8xl font-light leading-tight mb-8">
+            <h1 className="font-headline text-6xl md:text-8xl font-light leading-tight mb-6">
               Obras<br />
               <span className="italic pl-12 md:pl-24">Selectas</span>
             </h1>
@@ -103,11 +103,11 @@ export default function Home() {
         </header>
 
         {/* Asymmetrical Editorial Gallery Grid */}
-        <section className="px-6 md:px-12 max-w-[1920px] mx-auto space-y-40 md:space-y-64">
+        <section className="px-6 md:px-12 max-w-[1920px] mx-auto space-y-20 md:space-y-32">
 
           {/* Row 1: Large Featured (Right Aligned) */}
-          <div className="flex flex-col md:flex-row justify-end items-start gap-12">
-            <Link to={`/artwork/${artworks[0].id}`} className="w-full md:w-3/5 gallery-item block">
+          <div className="flex flex-col md:flex-row justify-end items-start">
+            <Link to={`/artwork/${artworks[0].id}`} className="w-full md:w-4/5 gallery-item block">
               <div className="parallax-container aspect-[4/5] bg-surface-container-low">
                 <img
                   src={artworks[0].image}
@@ -115,16 +115,16 @@ export default function Home() {
                   className="parallax-img w-full h-full object-cover"
                 />
               </div>
-              <div className="mt-8">
+              <div className="mt-5">
                 <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[0].title}</p>
-                <p className="font-body text-xs text-outline mt-2 italic">{artworks[0].medium}</p>
+                <p className="font-body text-xs text-outline mt-1 italic">{artworks[0].medium}</p>
               </div>
             </Link>
           </div>
 
           {/* Row 2: Two Asymmetrical Columns */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-            <Link to={`/artwork/${artworks[1].id}`} className="md:col-start-2 md:col-span-4 gallery-item block">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            <Link to={`/artwork/${artworks[1].id}`} className="md:col-start-1 md:col-span-5 gallery-item block">
               <div className="parallax-container aspect-square bg-surface-container-low">
                 <img
                   src={artworks[1].image}
@@ -132,12 +132,12 @@ export default function Home() {
                   className="parallax-img w-full h-full object-cover"
                 />
               </div>
-              <div className="mt-8">
+              <div className="mt-5">
                 <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[1].title}</p>
               </div>
             </Link>
 
-            <Link to={`/artwork/${artworks[2].id}`} className="md:col-start-8 md:col-span-5 gallery-item block">
+            <Link to={`/artwork/${artworks[2].id}`} className="md:col-start-7 md:col-span-6 gallery-item block">
               <div className="parallax-container aspect-[16/10] bg-surface-container-low">
                 <img
                   src={artworks[2].image}
@@ -145,7 +145,7 @@ export default function Home() {
                   className="parallax-img w-full h-full object-cover"
                 />
               </div>
-              <div className="mt-8">
+              <div className="mt-5">
                 <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[2].title}</p>
               </div>
             </Link>
@@ -153,7 +153,7 @@ export default function Home() {
 
           {/* Row 3: Centered Vertical Focus */}
           <div className="flex justify-center items-start">
-            <Link to={`/artwork/${artworks[3].id}`} className="w-full md:w-2/5 gallery-item block">
+            <Link to={`/artwork/${artworks[3].id}`} className="w-full md:w-3/5 gallery-item block">
               <div className="parallax-container aspect-[3/4] bg-surface-container-low">
                 <img
                   src={artworks[3].image}
@@ -161,24 +161,23 @@ export default function Home() {
                   className="parallax-img w-full h-full object-cover"
                 />
               </div>
-              <div className="mt-8 text-center md:text-left">
+              <div className="mt-5 text-center md:text-left">
                 <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[3].title}</p>
-                <p className="font-body text-xs text-outline mt-2 max-w-xs">{artworks[3].description}</p>
               </div>
             </Link>
           </div>
 
           {/* Row 4: Wide Bleed */}
-          <div className="w-full pt-20">
+          <div className="w-full">
             <Link to={`/artwork/${artworks[4].id}`} className="gallery-item block">
-              <div className="parallax-container h-[400px] md:h-[716px] w-full bg-surface-container-low">
+              <div className="parallax-container h-[400px] md:h-[75vh] w-full bg-surface-container-low">
                 <img
                   src={artworks[4].image}
                   alt={artworks[4].title}
                   className="parallax-img w-full h-full object-cover"
                 />
               </div>
-              <div className="mt-8 flex justify-between items-baseline border-t border-outline-variant/20 pt-8">
+              <div className="mt-5 flex justify-between items-baseline border-t border-outline-variant/20 pt-5">
                 <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[4].title}</p>
                 <span className="font-label text-[10px] uppercase tracking-[0.25em] text-primary border-b border-primary/40 hover:border-primary transition-colors">
                   Ver Serie
@@ -187,44 +186,32 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Row 5: Intensidad I — left-aligned portrait */}
-          <div className="flex flex-col md:flex-row justify-start items-start gap-12">
-            <Link to={`/artwork/${artworks[4].id}`} className="w-full md:w-2/5 gallery-item block">
+          {/* Row 5: Intensidad II + III — side by side, staggered */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            <Link to={`/artwork/${artworks[5].id}`} className="gallery-item block">
               <div className="parallax-container aspect-[4/5] bg-surface-container-low">
-                <img
-                  src={artworks[4].image}
-                  alt={artworks[4].title}
-                  className="parallax-img w-full h-full object-cover"
-                />
+                <img src={artworks[5].image} alt={artworks[5].title} className="parallax-img w-full h-full object-cover" />
               </div>
-              <div className="mt-8">
-                <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[4].title}</p>
-                <p className="font-body text-xs text-outline mt-2 italic">{artworks[4].medium}</p>
-              </div>
-            </Link>
-          </div>
-
-          {/* Row 6: Intensidad II — right-aligned */}
-          <div className="flex flex-col md:flex-row justify-end items-start gap-12">
-            <Link to={`/artwork/${artworks[5].id}`} className="w-full md:w-3/5 gallery-item block">
-              <div className="parallax-container aspect-[4/5] bg-surface-container-low">
-                <img
-                  src={artworks[5].image}
-                  alt={artworks[5].title}
-                  className="parallax-img w-full h-full object-cover"
-                />
-              </div>
-              <div className="mt-8">
+              <div className="mt-5">
                 <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[5].title}</p>
-                <p className="font-body text-xs text-outline mt-2 italic">{artworks[5].medium}</p>
+                <p className="font-body text-xs text-outline mt-1 italic">{artworks[5].medium}</p>
+              </div>
+            </Link>
+
+            <Link to={`/artwork/${artworks[6].id}`} className="gallery-item block md:mt-24">
+              <div className="parallax-container aspect-[4/5] bg-surface-container-low">
+                <img src={artworks[6].image} alt={artworks[6].title} className="parallax-img w-full h-full object-cover" />
+              </div>
+              <div className="mt-5">
+                <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[6].title}</p>
+                <p className="font-body text-xs text-outline mt-1 italic">{artworks[6].medium}</p>
               </div>
             </Link>
           </div>
-
         </section>
 
         {/* Newsletter / Contact Teaser */}
-        <section className="mt-64 px-6 md:px-12 py-32 bg-surface-container-low text-center">
+        <section className="mt-24 px-6 md:px-12 py-32 bg-surface-container-low text-center">
           <h2 className="font-headline text-4xl md:text-6xl mb-12">Guarda el silencio.</h2>
           <form className="max-w-md mx-auto flex flex-col gap-8" onSubmit={e => e.preventDefault()}>
             <div className="relative">
