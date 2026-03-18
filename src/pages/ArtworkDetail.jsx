@@ -10,7 +10,7 @@ const contentVariants = {
     opacity: 1,
     transition: { staggerChildren: 0.08, delayChildren: 0.25 }
   },
-  exit: { opacity: 0, transition: { duration: 0.15, ease: 'easeIn' } }
+  exit: { opacity: 0, y: -8, transition: { duration: 0.38, ease: [0.4, 0, 1, 1] } }
 }
 
 const itemVariants = {
@@ -101,9 +101,8 @@ export default function ArtworkDetail() {
         <motion.section
           className="mt-40 bg-surface-container-low py-32 px-6 md:px-12"
           initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
+          animate={{ opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.5 } }}
+          exit={{ opacity: 0, transition: { duration: 0.25, ease: 'easeIn' } }}
         >
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-headline text-3xl md:text-4xl text-primary-container mb-12 italic">
