@@ -1,11 +1,12 @@
 import Navbar from '../components/Navbar'
+import HeroSection from '../components/sections/HeroSection'
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="pt-20">
-        <div className="p-8 font-headline text-4xl text-primary">Renata Nanni</div>
+      <main>
+        <HeroSection />
       </main>
     </>
   )
