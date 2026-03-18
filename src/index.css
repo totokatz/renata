@@ -67,4 +67,5 @@ body {
   font-family: 'Work Sans', sans-serif;
   background-color: #fcf8f9;
   color: #1c1b1c;
+  overflow-x: hidden;
 }

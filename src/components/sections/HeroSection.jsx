@@ -12,7 +12,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/10 to-background" />
       </div>
       <div className="relative z-10 text-center px-6 max-w-6xl">
-        <h1 className="font-headline text-5xl sm:text-6xl md:text-[8rem] lg:text-[10rem] leading-none tracking-tight text-primary">
+        <h1 className="font-headline text-4xl sm:text-6xl md:text-[8rem] lg:text-[10rem] leading-none tracking-tight text-primary">
           The Fluid Geometry <br className="hidden sm:block" /> of Silence
         </h1>
       </div>
