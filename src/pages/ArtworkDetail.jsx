@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Navbar from '../components/Navbar'
@@ -18,6 +19,10 @@ const itemVariants = {
 export default function ArtworkDetail() {
   const { id } = useParams()
   const artwork = artworks.find(a => a.id === id) ?? artworks[0]
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [id])
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigationType } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -8,6 +8,17 @@ import heroImg from '../assets/waves-1.jpg'
 
 export default function Home() {
   const cursorRef = useRef(null)
+  const navType = useNavigationType()
+
+  useEffect(() => {
+    if (navType === 'POP') {
+      const saved = sessionStorage.getItem('home-scroll')
+      if (saved) window.scrollTo({ top: parseInt(saved), behavior: 'instant' })
+    }
+    return () => {
+      sessionStorage.setItem('home-scroll', String(window.scrollY))
+    }
+  }, [navType])
 
   useEffect(() => {
     const handleScroll = () => {
