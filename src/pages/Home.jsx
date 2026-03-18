@@ -1,4 +1,5 @@
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import HeroSection from '../components/sections/HeroSection'
 import IntroSection from '../components/sections/IntroSection'
 import AsymmetricSection1 from '../components/sections/AsymmetricSection1'
@@ -18,6 +19,7 @@ export default function Home() {
         <AsymmetricSection2 />
         <StudioSection />
       </main>
+      <Footer />
     </>
   )
 }
