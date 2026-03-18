@@ -1,14 +1,13 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { artworks } from '../data/artworks'
-import heroImg from '../assets/waves-hero.jpg'
+import heroImg from '../assets/waves-1.jpg'
 
 export default function Home() {
   const cursorRef = useRef(null)
-  const shouldReduceMotion = useReducedMotion()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +40,12 @@ export default function Home() {
   return (
     <>
       <Navbar />
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } }}
+        exit={{ opacity: 0, transition: { duration: 0.2, ease: 'easeIn' } }}
+      >
 
       {/* Hero — full-screen painting */}
       <section className="relative h-screen w-full overflow-hidden">
@@ -92,16 +97,13 @@ export default function Home() {
           {/* Row 1: Large Featured (Right Aligned) */}
           <div className="flex flex-col md:flex-row justify-end items-start gap-12">
             <Link to={`/artwork/${artworks[0].id}`} className="w-full md:w-3/5 gallery-item block">
-              <motion.div
-                layoutId={shouldReduceMotion ? undefined : `artwork-image-${artworks[0].id}`}
-                className="parallax-container aspect-[4/5] bg-surface-container-low"
-              >
+              <div className="parallax-container aspect-[4/5] bg-surface-container-low">
                 <img
                   src={artworks[0].image}
                   alt={artworks[0].title}
                   className="parallax-img w-full h-full object-cover"
                 />
-              </motion.div>
+              </div>
               <div className="mt-8">
                 <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[0].title}</p>
                 <p className="font-body text-xs text-outline mt-2 italic">{artworks[0].medium}</p>
@@ -112,32 +114,26 @@ export default function Home() {
           {/* Row 2: Two Asymmetrical Columns */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <Link to={`/artwork/${artworks[1].id}`} className="md:col-start-2 md:col-span-4 gallery-item block">
-              <motion.div
-                layoutId={shouldReduceMotion ? undefined : `artwork-image-${artworks[1].id}`}
-                className="parallax-container aspect-square bg-surface-container-low"
-              >
+              <div className="parallax-container aspect-square bg-surface-container-low">
                 <img
                   src={artworks[1].image}
                   alt={artworks[1].title}
                   className="parallax-img w-full h-full object-cover"
                 />
-              </motion.div>
+              </div>
               <div className="mt-8">
                 <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[1].title}</p>
               </div>
             </Link>
 
             <Link to={`/artwork/${artworks[2].id}`} className="md:col-start-8 md:col-span-5 gallery-item block">
-              <motion.div
-                layoutId={shouldReduceMotion ? undefined : `artwork-image-${artworks[2].id}`}
-                className="parallax-container aspect-[16/10] bg-surface-container-low"
-              >
+              <div className="parallax-container aspect-[16/10] bg-surface-container-low">
                 <img
                   src={artworks[2].image}
                   alt={artworks[2].title}
                   className="parallax-img w-full h-full object-cover"
                 />
-              </motion.div>
+              </div>
               <div className="mt-8">
                 <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[2].title}</p>
               </div>
@@ -147,16 +143,13 @@ export default function Home() {
           {/* Row 3: Centered Vertical Focus */}
           <div className="flex justify-center items-start">
             <Link to={`/artwork/${artworks[3].id}`} className="w-full md:w-2/5 gallery-item block">
-              <motion.div
-                layoutId={shouldReduceMotion ? undefined : `artwork-image-${artworks[3].id}`}
-                className="parallax-container aspect-[3/4] bg-surface-container-low"
-              >
+              <div className="parallax-container aspect-[3/4] bg-surface-container-low">
                 <img
                   src={artworks[3].image}
                   alt={artworks[3].title}
                   className="parallax-img w-full h-full object-cover"
                 />
-              </motion.div>
+              </div>
               <div className="mt-8 text-center md:text-left">
                 <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[3].title}</p>
                 <p className="font-body text-xs text-outline mt-2 max-w-xs">{artworks[3].description}</p>
@@ -167,16 +160,13 @@ export default function Home() {
           {/* Row 4: Wide Bleed */}
           <div className="w-full pt-20">
             <Link to={`/artwork/${artworks[4].id}`} className="gallery-item block">
-              <motion.div
-                layoutId={shouldReduceMotion ? undefined : `artwork-image-${artworks[4].id}`}
-                className="parallax-container h-[400px] md:h-[716px] w-full bg-surface-container-low"
-              >
+              <div className="parallax-container h-[400px] md:h-[716px] w-full bg-surface-container-low">
                 <img
                   src={artworks[4].image}
                   alt={artworks[4].title}
                   className="parallax-img w-full h-full object-cover"
                 />
-              </motion.div>
+              </div>
               <div className="mt-8 flex justify-between items-baseline border-t border-outline-variant/20 pt-8">
                 <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[4].title}</p>
                 <span className="font-label text-[10px] uppercase tracking-[0.25em] text-primary border-b border-primary/40 hover:border-primary transition-colors">
@@ -188,34 +178,34 @@ export default function Home() {
 
           {/* Row 5: Intensidad I — left-aligned portrait */}
           <div className="flex flex-col md:flex-row justify-start items-start gap-12">
-            <Link to={`/artwork/${artworks[8].id}`} className="w-full md:w-2/5 gallery-item block">
+            <Link to={`/artwork/${artworks[4].id}`} className="w-full md:w-2/5 gallery-item block">
               <div className="parallax-container aspect-[4/5] bg-surface-container-low">
                 <img
-                  src={artworks[8].image}
-                  alt={artworks[8].title}
+                  src={artworks[4].image}
+                  alt={artworks[4].title}
                   className="parallax-img w-full h-full object-cover"
                 />
               </div>
               <div className="mt-8">
-                <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[8].title}</p>
-                <p className="font-body text-xs text-outline mt-2 italic">{artworks[8].medium}</p>
+                <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[4].title}</p>
+                <p className="font-body text-xs text-outline mt-2 italic">{artworks[4].medium}</p>
               </div>
             </Link>
           </div>
 
-          {/* Row 6: Intensidad II — right-aligned landscape */}
+          {/* Row 6: Intensidad II — right-aligned */}
           <div className="flex flex-col md:flex-row justify-end items-start gap-12">
-            <Link to={`/artwork/${artworks[9].id}`} className="w-full md:w-3/5 gallery-item block">
+            <Link to={`/artwork/${artworks[5].id}`} className="w-full md:w-3/5 gallery-item block">
               <div className="parallax-container aspect-[4/5] bg-surface-container-low">
                 <img
-                  src={artworks[9].image}
-                  alt={artworks[9].title}
+                  src={artworks[5].image}
+                  alt={artworks[5].title}
                   className="parallax-img w-full h-full object-cover"
                 />
               </div>
               <div className="mt-8">
-                <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[9].title}</p>
-                <p className="font-body text-xs text-outline mt-2 italic">{artworks[9].medium}</p>
+                <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[5].title}</p>
+                <p className="font-body text-xs text-outline mt-2 italic">{artworks[5].medium}</p>
               </div>
             </Link>
           </div>
@@ -244,6 +234,8 @@ export default function Home() {
       </main>
 
       <Footer />
+
+      </motion.div>
 
       {/* Custom Cursor */}
       <div
