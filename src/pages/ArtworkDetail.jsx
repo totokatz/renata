@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -18,6 +18,7 @@ const itemVariants = {
 
 export default function ArtworkDetail() {
   const { id } = useParams()
+  const navigate = useNavigate()
   const artwork = artworks.find(a => a.id === id) ?? artworks[0]
 
   useEffect(() => {
@@ -58,8 +59,24 @@ export default function ArtworkDetail() {
             {/* Content — cada elemento entra escalonado */}
             <div className="flex flex-col pt-12 md:pt-24 max-w-xl">
 
-              <motion.span
+              <motion.button
                 custom={0}
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                onClick={() => navigate(-1)}
+                className="group inline-flex items-center gap-4 text-primary transition-all duration-700 mb-16 self-start"
+              >
+                <span className="material-symbols-outlined transition-transform group-hover:-translate-x-2">
+                  arrow_left_alt
+                </span>
+                <span className="text-xs uppercase tracking-[0.4em] font-medium transition-all group-hover:tracking-[0.6em]">
+                  Volver
+                </span>
+              </motion.button>
+
+              <motion.span
+                custom={1}
                 variants={itemVariants}
                 initial="hidden"
                 animate="visible"
@@ -69,7 +86,7 @@ export default function ArtworkDetail() {
               </motion.span>
 
               <motion.h1
-                custom={1}
+                custom={2}
                 variants={itemVariants}
                 initial="hidden"
                 animate="visible"
@@ -79,7 +96,7 @@ export default function ArtworkDetail() {
               </motion.h1>
 
               <motion.div
-                custom={2}
+                custom={3}
                 variants={itemVariants}
                 initial="hidden"
                 animate="visible"
@@ -91,7 +108,7 @@ export default function ArtworkDetail() {
               </motion.div>
 
               <motion.div
-                custom={3}
+                custom={4}
                 variants={itemVariants}
                 initial="hidden"
                 animate="visible"
