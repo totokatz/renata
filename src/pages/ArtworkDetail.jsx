@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { artworks } from '../data/artworks'
@@ -25,6 +25,7 @@ const itemVariants = {
 export default function ArtworkDetail() {
   const { id } = useParams()
   const artwork = artworks.find(a => a.id === id) ?? artworks[0]
+  const shouldReduceMotion = useReducedMotion()
 
   return (
     <>
@@ -37,7 +38,7 @@ export default function ArtworkDetail() {
 
             {/* Image Side — shared morph */}
             <motion.div
-              layoutId={`artwork-image-${id}`}
+              layoutId={shouldReduceMotion ? undefined : `artwork-image-${id}`}
               className="relative w-full aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-surface-container-low"
               transition={{ type: 'spring', stiffness: 280, damping: 28 }}
             >

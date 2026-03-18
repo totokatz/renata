@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { artworks } from '../data/artworks'
@@ -8,6 +8,7 @@ import heroImg from '../assets/waves-hero.jpg'
 
 export default function Home() {
   const cursorRef = useRef(null)
+  const shouldReduceMotion = useReducedMotion()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -92,7 +93,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-end items-start gap-12">
             <Link to={`/artwork/${artworks[0].id}`} className="w-full md:w-3/5 gallery-item block">
               <motion.div
-                layoutId={`artwork-image-${artworks[0].id}`}
+                layoutId={shouldReduceMotion ? undefined : `artwork-image-${artworks[0].id}`}
                 className="parallax-container aspect-[4/5] bg-surface-container-low"
               >
                 <img
@@ -112,7 +113,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <Link to={`/artwork/${artworks[1].id}`} className="md:col-start-2 md:col-span-4 gallery-item block">
               <motion.div
-                layoutId={`artwork-image-${artworks[1].id}`}
+                layoutId={shouldReduceMotion ? undefined : `artwork-image-${artworks[1].id}`}
                 className="parallax-container aspect-square bg-surface-container-low"
               >
                 <img
@@ -128,7 +129,7 @@ export default function Home() {
 
             <Link to={`/artwork/${artworks[2].id}`} className="md:col-start-8 md:col-span-5 gallery-item block">
               <motion.div
-                layoutId={`artwork-image-${artworks[2].id}`}
+                layoutId={shouldReduceMotion ? undefined : `artwork-image-${artworks[2].id}`}
                 className="parallax-container aspect-[16/10] bg-surface-container-low"
               >
                 <img
@@ -147,7 +148,7 @@ export default function Home() {
           <div className="flex justify-center items-start">
             <Link to={`/artwork/${artworks[3].id}`} className="w-full md:w-2/5 gallery-item block">
               <motion.div
-                layoutId={`artwork-image-${artworks[3].id}`}
+                layoutId={shouldReduceMotion ? undefined : `artwork-image-${artworks[3].id}`}
                 className="parallax-container aspect-[3/4] bg-surface-container-low"
               >
                 <img
@@ -167,7 +168,7 @@ export default function Home() {
           <div className="w-full pt-20">
             <Link to={`/artwork/${artworks[4].id}`} className="gallery-item block">
               <motion.div
-                layoutId={`artwork-image-${artworks[4].id}`}
+                layoutId={shouldReduceMotion ? undefined : `artwork-image-${artworks[4].id}`}
                 className="parallax-container h-[400px] md:h-[716px] w-full bg-surface-container-low"
               >
                 <img
@@ -181,6 +182,40 @@ export default function Home() {
                 <span className="font-label text-[10px] uppercase tracking-[0.25em] text-primary border-b border-primary/40 hover:border-primary transition-colors">
                   Ver Serie
                 </span>
+              </div>
+            </Link>
+          </div>
+
+          {/* Row 5: Intensidad I — left-aligned portrait */}
+          <div className="flex flex-col md:flex-row justify-start items-start gap-12">
+            <Link to={`/artwork/${artworks[8].id}`} className="w-full md:w-2/5 gallery-item block">
+              <div className="parallax-container aspect-[4/5] bg-surface-container-low">
+                <img
+                  src={artworks[8].image}
+                  alt={artworks[8].title}
+                  className="parallax-img w-full h-full object-cover"
+                />
+              </div>
+              <div className="mt-8">
+                <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[8].title}</p>
+                <p className="font-body text-xs text-outline mt-2 italic">{artworks[8].medium}</p>
+              </div>
+            </Link>
+          </div>
+
+          {/* Row 6: Intensidad II — right-aligned landscape */}
+          <div className="flex flex-col md:flex-row justify-end items-start gap-12">
+            <Link to={`/artwork/${artworks[9].id}`} className="w-full md:w-3/5 gallery-item block">
+              <div className="parallax-container aspect-[4/5] bg-surface-container-low">
+                <img
+                  src={artworks[9].image}
+                  alt={artworks[9].title}
+                  className="parallax-img w-full h-full object-cover"
+                />
+              </div>
+              <div className="mt-8">
+                <p className="font-label text-[10px] uppercase tracking-[0.25em] text-on-surface">{artworks[9].title}</p>
+                <p className="font-body text-xs text-outline mt-2 italic">{artworks[9].medium}</p>
               </div>
             </Link>
           </div>
