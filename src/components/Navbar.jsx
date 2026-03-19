@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 const links = [
   { to: '/', label: 'Obras Selectas' },
   { to: '/collections', label: 'Colecciones' },
+  { to: '/diseño', label: 'Diseño' },
   { to: '/inquire', label: 'Consultar' },
 ]
 
@@ -14,6 +15,7 @@ export default function Navbar() {
   const { pathname } = useLocation()
   const isHome = pathname === '/'
   const isCollections = pathname === '/collections'
+  const isDesign = pathname === '/diseño' || pathname.startsWith('/diseño/')
   const transparent = isHome && !scrolled && !menuOpen
 
   useEffect(() => {
@@ -59,6 +61,13 @@ export default function Navbar() {
                 : `${transparent ? 'text-white/70 hover:text-white' : 'text-on-surface-variant hover:text-primary'}`
             }`}>
               Colecciones
+            </Link>
+            <Link to="/diseño" className={`font-label tracking-widest text-xs uppercase whitespace-nowrap transition-all duration-700 ease-in-out hover:tracking-[0.2em] ${
+              isDesign
+                ? `font-medium border-b ${transparent ? 'text-white/90 border-white/30 hover:text-white' : 'text-primary border-slate-900/20 hover:text-primary'}`
+                : `${transparent ? 'text-white/70 hover:text-white' : 'text-on-surface-variant hover:text-primary'}`
+            }`}>
+              Diseño
             </Link>
             <Link to="/inquire" className={`font-label tracking-widest text-xs uppercase whitespace-nowrap transition-all duration-700 ease-in-out hover:tracking-[0.2em] ${
               transparent ? 'text-white/70 hover:text-white' : 'text-on-surface-variant hover:text-primary'

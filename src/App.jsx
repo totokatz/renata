@@ -4,6 +4,8 @@ import { useEffect } from 'react'
 import Home from './pages/Home'
 import ArtworkDetail from './pages/ArtworkDetail'
 import Collections from './pages/Collections'
+import Design from './pages/Design'
+import DesignProject from './pages/DesignProject'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -22,6 +24,8 @@ function AnimatedRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/collections" element={<Collections />} />
         <Route path="/artwork/:id" element={<ArtworkDetail />} />
+        <Route path="/diseño" element={<Design />} />
+        <Route path="/diseño/:slug" element={<DesignProject />} />
       </Routes>
     </AnimatePresence>
   )
