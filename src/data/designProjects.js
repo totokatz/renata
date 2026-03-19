@@ -1,9 +1,11 @@
-import truyuConcepto from '../assets/Lamparu TRUYU/6a638f196147747.661ae3fac9080.png'
-import truyuIntro from '../assets/Lamparu TRUYU/6a8ef0196147747.661ae3fac8976.png'
-import truyuContexto from '../assets/Lamparu TRUYU/01cb06196147747.661ae3faca1af.png'
-import truyuDetalles from '../assets/Lamparu TRUYU/3477fe196147747.661ae3fac840f.png'
-import truyuMorfologia from '../assets/Lamparu TRUYU/a351a9196147747.661ae3fac9c7f.png'
-import truyuBocetos from '../assets/Lamparu TRUYU/eb1d33196147747.661ae3fac978b.png'
+import truyuConcepto from '../assets/lampara-truyu/concepto.png'
+import truyuCloseup from '../assets/lampara-truyu/closeup.png'
+import truyuContexto from '../assets/lampara-truyu/contexto.png'
+import truyuDetalleSketch from '../assets/lampara-truyu/detalle-sketch.png'
+import truyuDetalleCabeza from '../assets/lampara-truyu/detalle-cabeza.png'
+import truyuDetalleBase from '../assets/lampara-truyu/detalle-base.png'
+import truyuMorfologia from '../assets/lampara-truyu/morfologia.png'
+import truyuBocetos from '../assets/lampara-truyu/bocetos.png'
 
 export const designProjects = [
   {
@@ -24,7 +26,7 @@ export const designProjects = [
       },
       {
         type: 'split',
-        image: truyuIntro,
+        image: truyuCloseup,
         text: '«Truyu» significa beso en mapuche, y fue elegido ya que el proceso de diseño de este producto tuvo lugar durante un viaje al sur argentino, en donde los mapuches eran uno de los pueblos originarios.',
         direction: 'left',
       },
@@ -35,7 +37,7 @@ export const designProjects = [
       },
       {
         type: 'showcase',
-        images: [truyuConcepto, truyuDetalles, truyuMorfologia, truyuContexto],
+        images: [truyuConcepto, truyuContexto, truyuCloseup, truyuBocetos],
       },
       {
         type: 'split',
@@ -45,7 +47,7 @@ export const designProjects = [
       },
       {
         type: 'grid',
-        images: [truyuDetalles, truyuContexto, truyuBocetos],
+        images: [truyuDetalleSketch, truyuDetalleCabeza, truyuDetalleBase],
         columns: 3,
       },
     ],

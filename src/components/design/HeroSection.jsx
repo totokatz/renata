@@ -5,16 +5,20 @@ export default function HeroSection({ image, title, subtitle }) {
   const containerRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end start'],
+    offset: ['start start', 'end end'],
   })
 
-  const scale = useTransform(scrollYProgress, [0, 0.6], [0.6, 1])
-  const grayscale = useTransform(scrollYProgress, [0, 0.6], [100, 0])
-  const clipProgress = useTransform(scrollYProgress, [0.1, 0.5], [0, 100])
+  // Scale: 0.75 → 1.0 over first half of scroll
+  const scale = useTransform(scrollYProgress, [0, 0.5], [0.75, 1])
+  // Grayscale: 80% → 0% over first half
+  const grayscale = useTransform(scrollYProgress, [0, 0.5], [80, 0])
+  // Title clip-path: reveal early so it's fully visible while sticky
+  const clipProgress = useTransform(scrollYProgress, [0.05, 0.35], [0, 100])
 
   return (
-    <section ref={containerRef} className="relative h-[150vh]">
+    <section ref={containerRef} className="relative h-[200vh]">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+        {/* Background image with scale + grayscale driven by scroll */}
         <motion.div
           className="absolute inset-0"
           style={{ scale }}
@@ -27,9 +31,11 @@ export default function HeroSection({ image, title, subtitle }) {
               filter: useTransform(grayscale, (v) => `grayscale(${v}%)`),
             }}
           />
+          {/* Gradient overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10" />
         </motion.div>
 
+        {/* Title with diagonal clip-path reveal */}
         {title && (
           <div className="relative z-10 text-center px-6">
             <motion.h1
