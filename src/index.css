@@ -165,3 +165,18 @@ body {
   0%, 100% { opacity: 0.25; transform: scaleY(1); }
   50%       { opacity: 0.6;  transform: scaleY(1.15); }
 }
+
+/* ── Design section animations ───────────────────────────── */
+
+/* Showcase counter styling */
+.showcase-counter {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Reduced motion: disable all scroll-driven effects */
+@media (prefers-reduced-motion: reduce) {
+  .design-card img {
+    filter: none !important;
+    transform: none !important;
+  }
+}
