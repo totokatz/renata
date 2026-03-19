@@ -1,43 +1,52 @@
-const placeholder = '/images/placeholder.jpg'
+import truyuConcepto from '../assets/Lamparu TRUYU/6a638f196147747.661ae3fac9080.png'
+import truyuIntro from '../assets/Lamparu TRUYU/6a8ef0196147747.661ae3fac8976.png'
+import truyuContexto from '../assets/Lamparu TRUYU/01cb06196147747.661ae3faca1af.png'
+import truyuDetalles from '../assets/Lamparu TRUYU/3477fe196147747.661ae3fac840f.png'
+import truyuMorfologia from '../assets/Lamparu TRUYU/a351a9196147747.661ae3fac9c7f.png'
+import truyuBocetos from '../assets/Lamparu TRUYU/eb1d33196147747.661ae3fac978b.png'
 
 export const designProjects = [
   {
-    slug: 'fast-green',
-    title: 'Fast Green',
-    subtitle: 'Comida rápida saludable',
+    slug: 'lampara-truyu',
+    title: 'Lámpara Truyu',
+    subtitle: 'Trabajo conceptual inspirado en el beso apasionado',
     type: 'Diseño de productos',
-    date: 'Junio 2024',
+    date: '2024',
     description:
-      'Fast Green es una propuesta de un carrito ambulante, ofertando a la oferta de comida rápida saludable. Presenta un trabajo de desarrollo comercial sustentable en un producto funcional y moderno.',
-    cover: placeholder,
+      'La lámpara Truyu representa conceptos derivados del beso apasionado, que implica chispa, fuego y pasión entre dos personas que conectan y se complementan entre sí.',
+    cover: truyuConcepto,
     sections: [
-      { type: 'hero', image: placeholder },
+      { type: 'hero', image: truyuConcepto },
       {
         type: 'text',
         content:
-          'Fast Green es una propuesta de un carrito ambulante, ofertando a la oferta de comida rápida saludable. Presenta un trabajo de desarrollo comercial sustentable en un producto funcional, adaptado para la producción de comida saludable.',
+          'La lámpara Truyu representa conceptos derivados del beso apasionado, que implica chispa, fuego y pasión entre dos personas que conectan y se complementan entre sí. Este concepto es expresado a partir de una lámpara, que al dar luz, representará el fuego, la chispa y la pasión del beso.',
       },
       {
         type: 'split',
-        image: placeholder,
-        text: 'El diseño del carrito contempla la experiencia completa del usuario, desde la aproximación visual hasta la interacción con los productos ofrecidos.',
+        image: truyuIntro,
+        text: '«Truyu» significa beso en mapuche, y fue elegido ya que el proceso de diseño de este producto tuvo lugar durante un viaje al sur argentino, en donde los mapuches eran uno de los pueblos originarios.',
         direction: 'left',
       },
       {
-        type: 'showcase',
-        images: [placeholder, placeholder, placeholder, placeholder],
+        type: 'fullbleed',
+        image: truyuMorfologia,
+        caption: 'Morfología',
       },
-      { type: 'fullbleed', image: placeholder, caption: 'Semántica' },
       {
-        type: 'grid',
-        images: [placeholder, placeholder, placeholder],
-        columns: 3,
+        type: 'showcase',
+        images: [truyuConcepto, truyuDetalles, truyuMorfologia, truyuContexto],
       },
       {
         type: 'split',
-        image: placeholder,
-        text: 'El desarrollo tecnológico del producto permite su fabricación en serie manteniendo la calidad artesanal del diseño original.',
+        image: truyuBocetos,
+        text: 'La morfología deriva de la abstracción de un beso. Comienza siendo algo recto, lineal, estructurado... pero se va volviendo una figura más orgánica y fluida, ya que el amor no es tan rígido.',
         direction: 'right',
+      },
+      {
+        type: 'grid',
+        images: [truyuDetalles, truyuContexto, truyuBocetos],
+        columns: 3,
       },
     ],
   },
