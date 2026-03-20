@@ -229,7 +229,7 @@ function ArtworkGrid({ artworks, flipped }) {
         // Artwork 2 — medium, left, bottom-aligned
         { col: 'md:col-start-1 md:col-span-4', row: 'md:row-start-1', self: 'md:self-end' },
         // Artwork 3 — wide landscape, center-left offset
-        { col: 'md:col-start-3 md:col-span-6', row: '', self: 'md:-mt-12' },
+        { col: 'md:col-start-3 md:col-span-6', row: '', self: '' },
         // Artwork 4 — square, right
         { col: 'md:col-start-9 md:col-span-4', row: '', self: '' },
       ]
@@ -239,7 +239,7 @@ function ArtworkGrid({ artworks, flipped }) {
         // Artwork 2 — medium, right, bottom-aligned
         { col: 'md:col-start-9 md:col-span-4', row: 'md:row-start-1', self: 'md:self-end' },
         // Artwork 3 — wide landscape, left offset
-        { col: 'md:col-start-2 md:col-span-6', row: '', self: 'md:-mt-12' },
+        { col: 'md:col-start-2 md:col-span-6', row: '', self: '' },
         // Artwork 4 — square, right
         { col: 'md:col-start-8 md:col-span-5', row: '', self: '' },
       ]

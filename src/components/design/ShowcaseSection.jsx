@@ -37,6 +37,7 @@ export default function ShowcaseSection({ images }) {
         })}
 
         <Counter progress={scrollYProgress} count={count} />
+        <ScrollHint progress={scrollYProgress} />
       </div>
     </section>
   )
@@ -81,12 +82,33 @@ function ShowcaseImage({ src, progress, segStart, segEnd, isFirst, isLast }) {
 
 function Counter({ progress, count }) {
   return (
-    <div className="absolute bottom-12 right-12 z-10 flex items-baseline gap-1">
+    <div className="absolute bottom-8 right-6 md:bottom-12 md:right-12 z-10 flex items-baseline gap-1">
       <CounterNumber progress={progress} count={count} />
       <span className="font-label text-xs text-white/50 tracking-widest">
         / {String(count).padStart(2, '0')}
       </span>
     </div>
+  )
+}
+
+function ScrollHint({ progress }) {
+  const opacity = useTransform(progress, [0, 0.15], [1, 0])
+
+  return (
+    <motion.div
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 md:hidden"
+      style={{ opacity }}
+    >
+      <span className="font-label text-[10px] uppercase tracking-[0.2em] text-white/50">
+        Scroll
+      </span>
+      <motion.div
+        className="w-px h-6 bg-white/40"
+        animate={{ scaleY: [1, 0.4, 1] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ transformOrigin: 'top' }}
+      />
+    </motion.div>
   )
 }
 

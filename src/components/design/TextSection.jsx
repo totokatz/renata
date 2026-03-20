@@ -22,7 +22,7 @@ export default function TextSection({ content }) {
   return (
     <section ref={containerRef} className="px-6 md:px-12 max-w-[1920px] mx-auto">
       <p
-        className="font-headline text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed text-primary max-w-5xl"
+        className="font-headline text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-loose md:leading-relaxed text-primary max-w-none md:max-w-5xl"
       >
         {words.map((word, i) => {
           const start = i / words.length

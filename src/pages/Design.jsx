@@ -28,6 +28,24 @@ const colPatterns = [
   'md:col-start-7 md:col-span-6',
 ]
 
+/* Mobile grid: alternating 2-col layout with editorial sizing
+   Even cards (0,2,4…) span full width or 7/12 cols
+   Odd cards  (1,3,5…) span remaining space offset to the right */
+const mobileColPatterns = [
+  'col-span-7',             // wide left
+  'col-span-5 col-start-8', // narrow right, pushed over
+  'col-span-5',             // narrow left
+  'col-span-7 col-start-6', // wide right, pushed over
+]
+
+/* Mobile aspect ratios for editorial rhythm — alternate tall and standard */
+const mobileAspectRatios = [
+  'aspect-[3/4]',   // tall
+  'aspect-[4/5]',   // slightly shorter
+  'aspect-[4/5]',   // slightly shorter
+  'aspect-[3/4]',   // tall
+]
+
 export default function Design() {
   const cursorRef = useRef(null)
   const cursorHalf = useRef(16)
@@ -85,11 +103,12 @@ export default function Design() {
         animate={{ opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } }}
         exit={{ opacity: 0, transition: { duration: 0.2, ease: 'easeIn' } }}
       >
-        <header className="px-6 md:px-12 max-w-[1920px] mx-auto mb-32 md:mb-48">
+        {/* ── Header ─────────────────────────────────────────── */}
+        <header className="px-6 md:px-12 max-w-[1920px] mx-auto mb-20 md:mb-48">
           <div className="max-w-4xl">
-            <h1 className="font-headline text-6xl md:text-8xl font-light leading-[1.05] mb-8 tracking-tight">
+            <h1 className="font-headline text-7xl md:text-8xl font-light leading-[1.05] mb-6 md:mb-8 tracking-tight">
               Dise<br />
-              <span className="italic pl-12 md:pl-24">ño</span>
+              <span className="italic pl-16 md:pl-24">ño</span>
             </h1>
             <p className="font-label text-xs uppercase tracking-[0.3em] text-outline">
               {designProjects.length} proyectos
@@ -97,8 +116,9 @@ export default function Design() {
           </div>
         </header>
 
+        {/* ── Card Grid ──────────────────────────────────────── */}
         <motion.div
-          className="px-6 md:px-12 max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8"
+          className="px-4 md:px-12 max-w-[1920px] mx-auto grid grid-cols-12 gap-3 md:gap-8"
           variants={gridVariants}
           initial="hidden"
           whileInView="visible"
@@ -108,22 +128,25 @@ export default function Design() {
             <Link
               key={project.slug}
               to={`/diseño/${project.slug}`}
-              className={`design-card block relative ${colPatterns[i % colPatterns.length]}`}
+              className={`design-card block relative ${mobileColPatterns[i % mobileColPatterns.length]} ${colPatterns[i % colPatterns.length]}`}
             >
               <div
                 className="ghost-number absolute pointer-events-none select-none font-headline leading-none text-primary tracking-tighter opacity-[0.038]"
                 style={{
-                  fontSize: 'clamp(5rem, 16vw, 20rem)',
-                  top: '-1rem',
-                  right: i % 2 === 0 ? '-0.5rem' : 'auto',
-                  left: i % 2 !== 0 ? '-0.5rem' : 'auto',
+                  fontSize: 'clamp(3.5rem, 16vw, 20rem)',
+                  top: '-0.5rem',
+                  right: i % 2 === 0 ? '-0.25rem' : 'auto',
+                  left: i % 2 !== 0 ? '-0.25rem' : 'auto',
                   zIndex: 0,
                 }}
               >
                 {String(i + 1).padStart(2, '0')}
               </div>
 
-              <DesignCard project={project} />
+              <DesignCard
+                project={project}
+                mobileAspect={mobileAspectRatios[i % mobileAspectRatios.length]}
+              />
             </Link>
           ))}
         </motion.div>
@@ -139,7 +162,7 @@ export default function Design() {
   )
 }
 
-function DesignCard({ project }) {
+function DesignCard({ project, mobileAspect }) {
   const cardRef = useRef(null)
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
   const [isHovered, setIsHovered] = useState(false)
@@ -156,19 +179,21 @@ function DesignCard({ project }) {
     <motion.div
       ref={cardRef}
       variants={cardVariants}
-      className="relative aspect-[3/4] overflow-hidden bg-surface-container-low group"
+      className={`relative overflow-hidden bg-surface-container-low group active:scale-[0.98] md:active:scale-100 transition-transform duration-200 ${mobileAspect} md:aspect-[3/4]`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      {/* ── Image ───────────────────────────────────────── */}
       <img
         src={project.cover}
         alt={project.title}
-        className="w-full h-full object-cover scale-105 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] grayscale-[30%] group-hover:grayscale-0 group-hover:scale-100"
+        className="w-full h-full object-cover scale-105 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] grayscale-0 md:grayscale-[30%] group-hover:grayscale-0 group-hover:scale-100"
       />
 
+      {/* ── Desktop overlay: clip-path circle reveal on hover ── */}
       <div
-        className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/40 to-primary/10 flex flex-col justify-end p-8 md:p-10"
+        className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/40 to-primary/10 hidden md:flex flex-col justify-end p-8 md:p-10"
         style={{
           clipPath: isHovered
             ? `circle(150% at ${mousePos.x}% ${mousePos.y}%)`
@@ -187,6 +212,25 @@ function DesignCard({ project }) {
           Ver proyecto
           <span className="material-symbols-outlined text-sm">arrow_right_alt</span>
         </span>
+      </div>
+
+      {/* ── Mobile overlay: always-visible bottom gradient ─── */}
+      <div className="absolute inset-0 flex flex-col justify-end md:hidden">
+        {/* Gradient scrim */}
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/25 to-transparent" />
+        {/* Content */}
+        <div className="relative z-10 p-5">
+          <p className="font-label text-[9px] uppercase tracking-[0.35em] text-white/50 mb-1.5">
+            {project.type} · {project.date}
+          </p>
+          <h3 className="font-headline text-2xl font-light text-white mb-2 leading-tight">
+            {project.title}
+          </h3>
+          <span className="inline-flex items-center gap-1.5 text-white/60 font-label text-[9px] uppercase tracking-widest">
+            Ver proyecto
+            <span className="material-symbols-outlined text-xs">arrow_right_alt</span>
+          </span>
+        </div>
       </div>
     </motion.div>
   )
